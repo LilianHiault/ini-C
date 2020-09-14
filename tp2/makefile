@@ -1,13 +1,13 @@
 CC = gcc
 FLAGS = -g -Wall -Wextra
-OBJETS = calculatrice.o
+OBJETS = factorielle.o
 
-all:calculatrice
+all:factorielle
 
-calculatrice:$(OBJETS)
+factorielle:$(OBJETS)
 	$(CC) $(FLAGS) -o $@ $(OBJETS)
 
-calculatrice.o:calculatrice.c
+factorielle.o:factorielle.c
 	$(CC) $(FLAGS) -c $<
 
 clean:
