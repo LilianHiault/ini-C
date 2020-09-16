@@ -20,7 +20,7 @@ int main()
   for(i=0; i<n; i++)
     {
       c = phrase[i];
-      phrase[i] = ((('a' <= c) && (c <= 'z')) || (('A' <= c) && (c <= 'Z'))) ? c + 'A' - 'a' : c;
+      phrase[i] = (('a' <= c) && (c <= 'z')) ? c + 'A' - 'a' : c;
     }
   printf("%s\n", phrase);
   return 0;
