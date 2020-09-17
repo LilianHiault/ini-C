@@ -6,6 +6,7 @@
 
 #define N 16
 #define M 100
+#define T 1000
 
 char mot_a_trouver[M];
 char mot_saisi[M];
@@ -28,15 +29,25 @@ void motDico()
 
 void motFichier(char * argv[])
 {
-  char dico[1000][N];
-  (void) dico;
+  char dico[5][T];
+  /* (void) dico; */
   FILE * fichier = fopen(argv[1], "r"); // Ouverture du fichier
   if(fichier)
     {
-      int lignes = 0;
-      fscanf(fichier, "%d", &lignes);
-      printf("Il y a %d lignes dans %s\n", lignes, argv[1]);
+      int nbLignes = 0;
+      fscanf(fichier, "%d", &nbLignes);
+      printf("Il y a %d lignes dans %s\n", nbLignes, argv[1]);
+      int compt = 0;
+      while(!feof(fichier))
+	{
+	  fscanf(fichier, "%s", dico[compt]);
+	  compt++;
+	}
       fclose(fichier);
+      /* int i; */
+      /* for(i=0; i<(compt - 1); i++) printf("%s\n", dico[i]); */
+      int motAlea = rand() % compt;
+      strcpy(mot_a_trouver, dico[motAlea]);
     }
   else
     {
@@ -150,7 +161,7 @@ void game(int argc, char * argv[]) {
 
   // Choix du mot à trouver
   choixMot(argc, argv);
-  /* printf("Mot choisit   : %s\n\n", mot_a_trouver); */
+  printf("Mot choisit   : %s\n\n", mot_a_trouver);
   cacherMot();
 
   int coupsMax = 6;
