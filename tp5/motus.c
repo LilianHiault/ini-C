@@ -35,10 +35,12 @@ void motFichier(char * argv[])
   if(fichier)
     {
       int nbLignes = 0;
+      int compt = 0;
+      int motAlea = 0;
+      
       fscanf(fichier, "%d", &nbLignes);
       printf("Il y a %d lignes dans %s\n", nbLignes, argv[1]);
-      int compt = 0;
-      while(!feof(fichier))
+      while(!feof(fichier) && compt < T)
 	{
 	  fscanf(fichier, "%s", dico[compt]);
 	  compt++;
@@ -46,7 +48,7 @@ void motFichier(char * argv[])
       fclose(fichier);
       /* int i; */
       /* for(i=0; i<(compt - 1); i++) printf("%s\n", dico[i]); */
-      int motAlea = rand() % compt;
+      motAlea = rand() % compt;
       strcpy(mot_a_trouver, dico[motAlea]);
     }
   else
@@ -69,9 +71,9 @@ void choixMot(int argc, char * argv[])
 
 void saisirMot()
 {
+  int i = 0;
   printf("Entrez un mot : ");
   scanf("%s", mot_saisi);
-  int i = 0;
   while (mot_saisi[i] != '\0')
     {
       mot_saisi[i] = toupper(mot_saisi[i]);
@@ -83,8 +85,8 @@ void saisirMot()
 void cacherMot()
 {
   int n = strlen(mot_a_trouver);
-  mot_decouvert[0] = mot_a_trouver[0];
   int i;
+  mot_decouvert[0] = mot_a_trouver[0];
   for(i=1; i<n; i++)
     {
       mot_decouvert[i] = '-';
@@ -159,13 +161,13 @@ void affDecouvert()
 
 void game(int argc, char * argv[]) {
 
-  // Choix du mot à trouver
-  choixMot(argc, argv);
-  printf("Mot choisit   : %s\n\n", mot_a_trouver);
-  cacherMot();
-
   int coupsMax = 6;
   int coups = 0;
+
+  // Choix du mot à trouver
+  choixMot(argc, argv);
+  /* printf("Mot choisit   : %s\n\n", mot_a_trouver); */
+  cacherMot();
 
   do
     {

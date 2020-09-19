@@ -1,5 +1,5 @@
 CC = gcc
-FLAGS = -g -Wall -Wextra
+FLAGS = -g -Wall -Wextra -Wdeclaration-after-statement -Werror=vla
 OBJETS = motus.o
 
 all:motus
